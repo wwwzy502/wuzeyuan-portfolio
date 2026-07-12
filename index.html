@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VISUAL WORKS — 影像作品集</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Bodoni:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Public+Sans:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{--ink:#111111;--paper:#F7F4EF;--paper-2:#EFEAE1;--red:#C1272D;--grey:#6B6560;--line:#D8D0C4;
+    --serif:'Libre Bodoni','Noto Serif SC',serif;--serif-cn:'Noto Serif SC',serif;
+    --sans:'Public Sans','Noto Sans SC',sans-serif;--sans-cn:'Noto Sans SC',sans-serif;
+    --mh:480px;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+  ::selection{background:var(--red);color:var(--paper);}
+  img{display:block;max-width:100%;}
+  .wrap{max-width:1240px;margin:0 auto;padding:0 40px;}
+  @media(max-width:640px){.wrap{padding:0 22px;}}
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1);}
+  .reveal.in{opacity:1;transform:none;}
+  @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none;}html{scroll-behavior:auto;}}
+
+  /* COVER */
+  .cover{min-height:100dvh;display:flex;flex-direction:column;position:relative;border-bottom:2px solid var(--ink);}
+  .cover-top{display:flex;justify-content:space-between;align-items:center;padding:22px 40px;border-bottom:1px solid var(--ink);font-size:12px;letter-spacing:.22em;text-transform:uppercase;}
+  .cover-top .dot{display:inline-block;width:7px;height:7px;background:var(--red);border-radius:50%;margin-right:9px;vertical-align:middle;}
+  .cover-body{flex:1;display:grid;grid-template-columns:1.15fr .85fr;}
+  .cover-left{padding:52px 40px;display:flex;flex-direction:column;justify-content:space-between;border-right:1px solid var(--ink);}
+  .masthead{font-family:var(--serif);font-weight:700;font-size:clamp(52px,9vw,128px);line-height:.92;}
+  .masthead .red{color:var(--red);}
+  .cover-sub{font-family:var(--serif);font-style:italic;font-size:clamp(20px,2.6vw,30px);margin-top:20px;color:var(--grey);}
+  .cover-meta{margin-top:40px;display:flex;gap:34px;flex-wrap:wrap;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;}
+  .cover-meta span{display:block;color:var(--grey);font-size:10.5px;margin-bottom:5px;}
+  .cover-meta b{font-weight:600;letter-spacing:.1em;}
+  .slogan{font-family:var(--serif-cn);font-weight:500;font-size:clamp(22px,3.4vw,40px);line-height:1.35;max-width:16em;}
+  .slogan em{font-family:var(--serif);font-style:italic;color:var(--red);}
+  .cover-right{position:relative;overflow:hidden;background:var(--paper-2);}
+  .cover-right img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+  .scroll-hint{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--paper);z-index:2;display:flex;flex-direction:column;align-items:center;gap:8px;text-shadow:0 1px 6px rgba(0,0,0,.5);}
+  .scroll-hint .bar{width:1px;height:34px;background:var(--paper);animation:pulse 1.8s ease-in-out infinite;}
+  @keyframes pulse{0%,100%{opacity:.25;transform:scaleY(.6);}50%{opacity:1;transform:scaleY(1);}}
+  /* cover entrance animation */
+  @keyframes coverUp{from{opacity:0;transform:translateY(38px);}to{opacity:1;transform:none;}}
+  @keyframes coverImg{from{opacity:0;transform:scale(1.08);}to{opacity:1;transform:none;}}
+  .masthead,.cover-sub,.cover-meta,.slogan{opacity:0;animation:coverUp .9s cubic-bezier(.16,1,.3,1) forwards;}
+  .masthead{animation-delay:.15s;} .cover-sub{animation-delay:.4s;} .cover-meta{animation-delay:.6s;} .slogan{animation-delay:.8s;}
+  .cover-right img{animation:coverImg 1.4s cubic-bezier(.16,1,.3,1) forwards;}
+  .cover-top{opacity:0;animation:coverUp .8s ease forwards;}
+  @media(prefers-reduced-motion:reduce){.masthead,.cover-sub,.cover-meta,.slogan,.cover-top{opacity:1;animation:none;}.cover-right img{animation:none;}}
+  @media(max-width:820px){.cover-body{grid-template-columns:1fr;}.cover-left{border-right:none;border-bottom:1px solid var(--ink);}.cover-right{min-height:320px;}}
+
+  /* CONTENTS */
+  .contents{padding:110px 0 90px;border-bottom:2px solid var(--ink);}
+  .sec-kicker{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--red);margin-bottom:14px;}
+  .contents-head{display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:46px;}
+  .contents-head h2{font-family:var(--serif);font-weight:700;font-size:clamp(38px,6vw,74px);}
+  .contents-head .cn{font-family:var(--serif-cn);font-size:16px;color:var(--grey);letter-spacing:.1em;}
+  .toc-item{display:grid;grid-template-columns:64px 1fr auto;align-items:baseline;gap:20px;padding:20px 0;border-top:1px solid var(--line);text-decoration:none;color:var(--ink);transition:padding-left .35s,color .35s;}
+  .toc-item:last-child{border-bottom:1px solid var(--line);}
+  .toc-item:hover{padding-left:16px;color:var(--red);}
+  .toc-num{font-family:var(--serif);font-style:italic;font-size:20px;color:var(--red);}
+  .toc-name{font-family:var(--serif-cn);font-weight:600;font-size:clamp(20px,2.6vw,30px);}
+  .toc-name .en{font-family:var(--sans);font-weight:500;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--grey);display:block;margin-top:5px;}
+  .toc-page{font-size:13px;letter-spacing:.14em;color:var(--grey);}
+  .toc-item:hover .toc-page{color:var(--red);}
+
+  /* WORK — 每个板块统一 padding；文字栏+图片网格并列，绝不重叠 */
+  .work{padding:76px 0;border-bottom:1px solid var(--line);}
+  .duo{display:grid;grid-template-columns:1fr 1.75fr;gap:40px;align-items:center;}
+  .duo.rev{grid-template-columns:1.75fr 1fr;}
+  .duo.rev .txt{order:2;} .duo.rev .media{order:1;}
+  .txt .kick{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--red);}
+  .txt .idx{font-family:var(--serif);font-style:italic;color:var(--red);font-weight:700;margin-right:10px;}
+  .txt h3{font-family:var(--serif-cn);font-weight:700;font-size:clamp(26px,3.2vw,42px);line-height:1.1;margin:10px 0 16px;}
+  .txt .role{font-family:var(--sans-cn);font-size:13px;color:var(--grey);margin-bottom:16px;}
+  .txt .role b{color:var(--ink);font-weight:600;}
+  .txt .quote{font-family:var(--serif-cn);font-weight:500;line-height:1.5;font-size:clamp(19px,2.1vw,25px);}
+  .txt .quote em{font-family:var(--serif);font-style:italic;color:var(--red);}
+  .txt .body{font-family:var(--sans-cn);font-size:14px;line-height:1.8;color:#3a3632;margin-top:16px;}
+  .txt .meta{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;margin-top:20px;}
+  .txt .meta div{border-top:1px solid var(--line);padding-top:7px;}
+  .txt .meta span{display:block;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--grey);margin-bottom:2px;}
+  .txt .meta b{font-family:var(--sans-cn);font-weight:600;font-size:13px;}
+  .btn{display:inline-flex;align-items:center;gap:8px;margin-top:20px;font-size:12px;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;color:var(--ink);border:1px solid var(--ink);padding:11px 20px;transition:.3s;}
+  .btn:hover{background:var(--red);border-color:var(--red);color:var(--paper);}
+
+  /* 图片网格：固定高度=统一视觉大小；cover铺满无留白；每格独立不重叠 */
+  .media{height:var(--mh);display:grid;gap:8px;}
+  .media .c{overflow:hidden;position:relative;border:1px solid var(--ink);background:var(--paper-2);}
+  .media .c img{width:100%;height:100%;object-fit:cover;display:block;}
+  .media .c.contain{background:transparent;border:none;}
+  .media .c.contain img{object-fit:contain;}
+  .tag{position:absolute;top:0;left:0;z-index:2;background:var(--red);color:var(--paper);font-size:10px;letter-spacing:.2em;text-transform:uppercase;padding:6px 11px;}
+
+  /* g1 摄影(8图): 大图2x2 + 6小 */
+  .g1{grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(3,1fr);
+      grid-template-areas:"a a b c" "a a d e" "f g h e";}
+  .g1 .c:nth-child(1){grid-area:a}.g1 .c:nth-child(2){grid-area:b}.g1 .c:nth-child(3){grid-area:c}
+  .g1 .c:nth-child(4){grid-area:d}.g1 .c:nth-child(5){grid-area:e}.g1 .c:nth-child(6){grid-area:f}
+  .g1 .c:nth-child(7){grid-area:g}.g1 .c:nth-child(8){grid-area:h}
+  /* g2 山鬼(5图): 大图不裁切 + 4小 */
+  .g2{grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(2,1fr);
+      grid-template-areas:"a a b" "a a c" ;grid-template-rows:1fr 1fr 1fr;grid-template-areas:"a a b" "a a c" "d e e";}
+  .g2 .c:nth-child(1){grid-area:a}.g2 .c:nth-child(2){grid-area:b}.g2 .c:nth-child(3){grid-area:c}
+  .g2 .c:nth-child(4){grid-area:d}.g2 .c:nth-child(5){grid-area:e}
+  /* g3 纪录片(4图): 大图 + 3小 */
+  .g3{grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);
+      grid-template-areas:"a a b" "a a c" "a a d";}
+  .g3 .c:nth-child(1){grid-area:a}.g3 .c:nth-child(2){grid-area:b}.g3 .c:nth-child(3){grid-area:c}.g3 .c:nth-child(4){grid-area:d}
+  /* g4 广告(1图): 满 */
+  .g4{grid-template-columns:1fr;grid-template-rows:1fr;}
+  /* g5 直播(3图): 大 + 2叠 */
+  .g5{grid-template-columns:2fr 1fr;grid-template-rows:1fr 1fr;grid-template-areas:"a b" "a c";}
+  .g5 .c:nth-child(1){grid-area:a}.g5 .c:nth-child(2){grid-area:b}.g5 .c:nth-child(3){grid-area:c}
+  /* g6 文旅(4图): 2x2 */
+  .g6{grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;}
+  /* g7 网页(5竖图): 5列参差 */
+  .g7{grid-template-columns:repeat(5,1fr);grid-template-rows:1fr;}
+  .g7 .c:nth-child(1){margin-top:0;margin-bottom:48px;}
+  .g7 .c:nth-child(2){margin-top:32px;margin-bottom:16px;}
+  .g7 .c:nth-child(3){margin-top:12px;margin-bottom:40px;}
+  .g7 .c:nth-child(4){margin-top:44px;margin-bottom:0;}
+  .g7 .c:nth-child(5){margin-top:20px;margin-bottom:28px;}
+  /* g8 vlog(4图): 顶部宽大图(横图不裁切) + 底部三张一排 */
+  .g8{grid-template-columns:repeat(3,1fr);grid-template-rows:2fr 1fr;grid-template-areas:"a a a" "b c d";}
+  .g8 .c:nth-child(1){grid-area:a}.g8 .c:nth-child(2){grid-area:b}.g8 .c:nth-child(3){grid-area:c}.g8 .c:nth-child(4){grid-area:d}
+
+  @media(max-width:820px){
+    .duo,.duo.rev{grid-template-columns:1fr;gap:24px;}
+    .duo.rev .txt{order:1;}.duo.rev .media{order:2;}
+    .media{height:auto;}
+    .g1,.g2,.g3,.g5,.g6,.g8{grid-template-columns:repeat(2,1fr);grid-template-rows:none;grid-template-areas:none;}
+    .g1 .c,.g2 .c,.g3 .c,.g5 .c,.g6 .c,.g8 .c{grid-area:auto!important;aspect-ratio:4/3;margin:0!important;}
+    .g4 .c{aspect-ratio:16/9;} .g7{grid-template-columns:repeat(3,1fr);} .g7 .c{aspect-ratio:9/16;margin:0!important;}
+  }
+
+  /* FOOTER */
+  .foot{background:var(--ink);color:var(--paper);padding:90px 0 46px;}
+  .foot-cta{font-family:var(--serif);font-weight:700;font-size:clamp(38px,7vw,92px);line-height:.98;}
+  .foot-cta .red{color:var(--red);font-style:italic;}
+  .foot-grid{margin-top:56px;display:grid;grid-template-columns:repeat(3,1fr);gap:30px;border-top:1px solid rgba(247,244,239,.2);padding-top:34px;}
+  .foot-grid .cell span{display:block;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:#9a938c;margin-bottom:9px;}
+  .foot-grid .cell b{font-family:var(--sans-cn);font-weight:500;font-size:17px;}
+  .foot-grid .cell a{color:var(--paper);text-decoration:none;}
+  .foot-bottom{margin-top:56px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#8a837c;}
+  .to-top{color:var(--paper);text-decoration:none;border:1px solid rgba(247,244,239,.35);padding:11px 20px;letter-spacing:.2em;transition:.3s;}
+  .to-top:hover{background:var(--red);border-color:var(--red);}
+  @media(max-width:640px){.foot-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<header class="cover">
+  <div class="cover-top"><div><span class="dot"></span>Visual Works &nbsp;/&nbsp; Portfolio</div><div>Issue 01 &nbsp;·&nbsp; 2026</div></div>
+  <div class="cover-body">
+    <div class="cover-left">
+      <div><div class="masthead">VISUAL<br>WORKS<span class="red">.</span></div>
+        <div class="cover-sub">影像作品集 — 吴泽远</div>
+        <div class="cover-meta"><div><span>Discipline</span><b>视频剪辑 · 摄影摄像</b></div><div><span>School</span><b>武汉传媒学院</b></div><div><span>Status</span><b>Open to Work</b></div></div></div>
+      <div class="slogan">用镜头记录真实，<br>以剪辑赋予故事<em>节奏</em>与温度。</div>
+    </div>
+    <div class="cover-right"><img src="https://cdn.jsdelivr.net/gh/wwwzy502/wuzeyuan-portfolio@main/images/cover.jpg" alt="封面主视觉"></div>
+  </div>
+  <a href="#contents" class="scroll-hint"><span>Scroll</span><span class="bar"></span></a>
+</header>
+
+<section class="contents" id="contents"><div class="wrap"><div class="reveal"><div class="sec-kicker">Table of Contents</div><div class="contents-head"><h2>Contents</h2><div class="cn">目 录 · 八个方向的影像与内容实践</div></div></div><div class="reveal">
+      <a class="toc-item" href="#w1"><div class="toc-num">01</div><div class="toc-name">摄影作品 · 人像<span class="en">Photography</span></div><div class="toc-page">P.01</div></a>
+      <a class="toc-item" href="#w2"><div class="toc-num">02</div><div class="toc-name">AI 漫剧 ·《山鬼》<span class="en">AI Anime Drama</span></div><div class="toc-page">P.02</div></a>
+      <a class="toc-item" href="#w3"><div class="toc-num">03</div><div class="toc-name">采访纪录片《皮肤上的宣言》<span class="en">Documentary</span></div><div class="toc-page">P.03</div></a>
+      <a class="toc-item" href="#w4"><div class="toc-num">04</div><div class="toc-name">广告拍摄 · 百事可乐<span class="en">Commercial</span></div><div class="toc-page">P.04</div></a>
+      <a class="toc-item" href="#w5"><div class="toc-num">05</div><div class="toc-name">模拟直播 · 卡丁车俱乐部<span class="en">Live Streaming</span></div><div class="toc-page">P.05</div></a>
+      <a class="toc-item" href="#w6"><div class="toc-num">06</div><div class="toc-name">文旅宣传 · 武汉红色文旅<span class="en">Cultural Tourism Film</span></div><div class="toc-page">P.06</div></a>
+      <a class="toc-item" href="#w7"><div class="toc-num">07</div><div class="toc-name">网页制作 · 石家河文明<span class="en">Web Design</span></div><div class="toc-page">P.07</div></a>
+      <a class="toc-item" href="#w8"><div class="toc-num">08</div><div class="toc-name">综艺感旅游 Vlog<span class="en">Travel Vlog</span></div><div class="toc-page">P.08</div></a>
+    </div></div></section>
+<section class="work" id="w1"><div class="wrap"><div class="duo reveal"><div class="txt"><div><span class="idx">01</span><span class="kick">Photography</span></div><h3>摄影作品 · 人像</h3><div class="role">角色 · <b>独立摄影 / 后期精修</b></div><div class="quote">我相信最好的照片不是<em>被摆出来</em>的，而是被<em>等待</em>到的——尤其是人像，要等眼神里的那一秒。</div><div class="body">尤其擅长人像。从取景、构图到后期调色，我追求画面的统一气质与真实质感：用光影塑造情绪，用景深与眼神留住人物的状态，让每一张照片都能独立讲述一个人的瞬间。</div><div class="meta"><div><span>擅长</span><b>人像 / 纪实 / 活动</b></div><div><span>工具</span><b>相机 · PS · DaVinci</b></div><div><span>风格</span><b>清新素雅 · 忧郁复古</b></div><div><span>风格</span><b>梦幻童话 · 日系生命</b></div></div></div><div class="media g1"><div class="c"><span class="tag">Portrait</span><img src="https://cdn.jsdelivr.net/gh/wwwzy502/wuzeyuan-portfolio@main/images/1-1.jpg" alt="" loading="lazy" decoding="async"></div><div class="c"><img src="https://cdn.jsdelivr.net/gh/wwwzy502/wuzeyuan-portfolio@main/images/1-2.jpg" alt="" loading="lazy" decoding="async"></div><div class="c"><img src="https://cdn.jsdelivr.net/gh/wwwzy502/wuzeyuan-portfolio@main/images/1-3.jpg" alt="" loading="lazy" decoding="async"></div><div class="c"><img src="https://cdn.jsdelivr.net/gh/wwwzy502/wuzeyuan-portfolio@main/images/1-4.jpg" alt="" loading="lazy" decoding="async"></div><div class="c"><img src="https://cdn.jsdelivr.net/gh/wwwzy502/wuzeyuan-portfolio@main/images/1-6.jpg" alt="" loading="lazy" decoding="async"></div><div class="c"><img src="https://cdn.jsdelivr.net/gh/wwwzy502/wuzeyuan-portfolio@main/images/1-5.jpg" alt="" loading="lazy" decoding="async"></div><div class="c"><img src="https://cdn.jsdelivr.net/gh/wwwzy502/wuzeyuan-portfolio@main/images/1-7.jpg" alt="" loading="lazy" decoding="async"></div><div class="c"><img src="https://cdn.jsdelivr.net/gh/wwwzy502/wuzeyuan-portfolio@main/images/1-8.jpg" alt="" loading="lazy" decoding="async"></div></div></div></div></section>
+<section class="work" id="w2"><div class="wrap"><div class="duo rev reveal"><div class="txt"><div><span class="idx">02</span><span class="kick">AI Anime Drama</span></div><h3>AI 漫剧 ·《山鬼》</h3><div class="role">角色 · <b>内容主理 / 分镜 / 后期</b></div><div class="quote">AI 是<em>画笔</em>，不是<em>作者</em>。我想借它让沉睡千年的荆楚神话，重新拥有<em>呼吸</em>与心跳。</div><div class="body">以荆楚文化为根、取材屈原《九歌·山鬼》的一部中短篇漫剧。我将「山鬼」的痴情重构成一场跨越千年的守望，完成从剧本改编、分镜到 AI 生图、切图动效与卡点配乐的全流程。</div><div class="meta"><div><span>题材</span><b>荆楚文化 ·《山鬼》改编</b></div><div><span>形式</span><b>中短篇漫剧 · 约 8 分钟</b></div><div><span>工具</span><b>AI 生图 · 剪映 · Pr</b></div><div><span>状态</span><b>个人创作</b></div></div><a class="btn" href="https://ucn5l0zz0g93.feishu.cn/wiki/UcD4wzxFnivsKfk3wfycmrHTn5f?from=from_copylink" target="_blank" rel="noopener">观看作品 <span>→</span></a></div><div class="media g2"><div class="c contain"><span class="tag">Trailer</span><img src="https://cdn.jsdelivr.net/gh/wwwzy502/wuzeyuan-portfolio@main/images/2-1.jpg" alt="" loading="lazy" decoding="async"></div><div class="c"><img src="https://cdn.jsdelivr.net/gh/wwwzy502/wuzeyuan-portfolio@main/images/2-2.jpg" alt="" loading="lazy" decoding="async"></div><div class="c"><img src="https://cdn.jsdelivr.net/gh/wwwzy502/wuzeyuan-portfolio@main/images/2-3.jpg" alt="" loading="lazy" decoding="async"></div><div class="c"><img src="https://cdn.jsdelivr.net/gh/wwwzy502/wuzeyuan-portfolio@main/images/2-4.jpg" alt="" loading="lazy" decoding="async"></div><div class="c"><img src="https://cdn.jsdelivr.net/gh/wwwzy502/wuzeyuan-portfolio@main/images/2-5.jpg" alt="" loading="lazy" decoding="async"></div></div></div></div></section>
+<section class="work" id="w3"><div class="wrap"><div class="duo reveal"><div class="txt"><div><span class="idx">03</span><span class="kick">Documentary</span></div><h3>采访纪录片《皮肤上的宣言》</h3><div class="role">角色 · <b>编导 · 摄影 · 剪辑（全权负责）</b></div><div class="quote">每一个纹身，都是一句写在皮肤上的<em>宣言</em>。我追问的是：当它被<em>看见</em>，社会究竟准备好<em>读懂</em>了吗？</div><div class="body">一部约 8 分钟的人物纪录片，聚焦纹身这一亚文化在大众视野中的接受程度，以及它对个体而言真正的意义。我独立完成选题、采访、拍摄与后期，用特写与口述串联偏见与理解之间的张力。</div><div class="meta"><div><span>形式</span><b>人物纪录片</b></div><div><span>片长</span><b>约 8 分钟</b></div><div><span>议题</span><b>亚文化的接受与意义</b></div><div><span>状态</span><b>独立创作</b></div></div><a class="btn" href="https://ucn5l0zz0g93.feishu.cn/wiki/Mm5iwNnIuiujS9kjyUIc94TqnCb?from=from_copylink" target="_blank" rel="noopener">观看作品 <span>→</span></a></div><div class="media g3"><div class="c"><span class="tag">Film</span><img src="https://cdn.jsdelivr.net/gh/wwwzy502/wuzeyuan-portfolio@main/images/3-1.jpg" alt="" loading="lazy" decoding="async"></div><div class="c"><img src="https://cdn.jsdelivr.net/gh/wwwzy502/wuzeyuan-portfolio@main/images/3-2.jpg" alt="" loading="lazy" decoding="async"></div><div class="c"><img src="https://cdn.jsdelivr.net/gh/wwwzy502/wuzeyuan-portfolio@main/images/3-3.jpg" alt="" loading="lazy" decoding="async"></div><div class="c"><img src="https://cdn.jsdelivr.net/gh/wwwzy502/wuzeyuan-portfolio@main/images/3-4.jpg" alt="" loading="lazy" decoding="async"></div></div></div></div></section>
+<section class="work" id="w4"><div class="wrap"><div class="duo rev reveal"><div class="txt"><div><span class="idx">04</span><span class="kick">Commercial</span></div><h3>广告拍摄 · 百事可乐</h3><div class="role">角色 · <b>创意 / 拍摄 / 剪辑</b></div><div class="quote">大片感从不取决于<em>设备</em>，而取决于<em>想象力</em>。一间宿舍、几件随手的道具，也能拍出让人<em>心动</em>的 19 秒。</div><div class="body">一支时长 19 秒的百事可乐概念广告，全程在宿舍内完成拍摄。没有专业灯光与器材，我用就地取材的道具、巧妙的构图与布光模拟出商业大片的质感。</div><div class="meta"><div><span>产品</span><b>百事可乐（概念广告）</b></div><div><span>时长</span><b>19 秒</b></div><div><span>制作</span><b>宿舍拍摄 · 就地取材</b></div><div><span>亮点</span><b>非专业器材 · 大片质感</b></div></div><a class="btn" href="https://ucn5l0zz0g93.feishu.cn/wiki/KHJOwPUu7iMfSek4QAUc95Qonog?from=from_copylink" target="_blank" rel="noopener">观看作品 <span>→</span></a></div><div class="media g4"><div class="c"><span class="tag">AD · 19s</span><img src="https://cdn.jsdelivr.net/gh/wwwzy502/wuzeyuan-portfolio@main/images/4-1.jpg" alt="" loading="lazy" decoding="async"></div></div></div></div></section>
+<section class="work" id="w5"><div class="wrap"><div class="duo reveal"><div class="txt"><div><span class="idx">05</span><span class="kick">Live Streaming</span></div><h3>模拟直播 · 卡丁车俱乐部</h3><div class="role">角色 · <b>策划 / 导播 / 现场剪辑</b></div><div class="quote">直播是<em>没有剪辑</em>的表达。如何在实时的镜头里，把一家店的<em>速度与激情</em>一次讲清楚，是我想解的题。</div><div class="body">一场为本地卡丁车俱乐部策划的模拟直播。我完整规划直播脚本、机位与画面切换，围绕「速度、激情、体验感」设计内容节奏，完成一次面向商业推广的直播实战演练。</div><div class="meta"><div><span>类型</span><b>模拟直播 · 商业宣传</b></div><div><span>对象</span><b>本地卡丁车俱乐部</b></div><div><span>职责</span><b>策划 / 导播 / 剪辑</b></div><div><span>状态</span><b>实战演练</b></div></div><a class="btn" href="https://ucn5l0zz0g93.feishu.cn/wiki/Uen5wfVhziU762kSBLFcaTfXnYe?from=from_copylink" target="_blank" rel="noopener">观看作品 <span>→</span></a></div><div class="media g5"><div class="c"><span class="tag">Live</span><img src="https://cdn.jsdelivr.net/gh/wwwzy502/wuzeyuan-portfolio@main/images/5-1.jpg" alt="" loading="lazy" decoding="async"></div><div class="c"><img src="https://cdn.jsdelivr.net/gh/wwwzy502/wuzeyuan-portfolio@main/images/5-2.jpg" alt="" loading="lazy" decoding="async"></div><div class="c"><img src="https://cdn.jsdelivr.net/gh/wwwzy502/wuzeyuan-portfolio@main/images/5-3.jpg" alt="" loading="lazy" decoding="async"></div></div></div></div></section>
+<section class="work" id="w6"><div class="wrap"><div class="duo rev reveal"><div class="txt"><div><span class="idx">06</span><span class="kick">Cultural Tourism Film</span></div><h3>文旅宣传 · 武汉红色文旅</h3><div class="role">角色 · <b>摄影 / 辅助剪辑</b></div><div class="quote">红色不是<em>口号</em>，是可以被<em>看见</em>的山河与故事。我想用画面，让历史与这座城市重新对话。</div><div class="body">这支约 5 分钟的红色文旅宣传片，我赴陈昌浩故居与黄陂木兰山实地取景，负责场景构图与运镜，并配合主剪完成素材整理与调色卡点。作品用于参加红色旅游创意策划大赛。</div><div class="meta"><div><span>取景</span><b>陈昌浩故居 · 黄陂木兰山</b></div><div><span>片长</span><b>约 5 分钟</b></div><div><span>用途</span><b>红色旅游创意策划大赛</b></div><div><span>成果</span><b>参评阶段</b></div></div><a class="btn" href="https://ucn5l0zz0g93.feishu.cn/wiki/NFgTwBTDuiAkN6kbPhwcgJRHnGd?from=from_copylink" target="_blank" rel="noopener">观看作品 <span>→</span></a></div><div class="media g6"><div class="c"><span class="tag">City Film</span><img src="https://cdn.jsdelivr.net/gh/wwwzy502/wuzeyuan-portfolio@main/images/6-1.jpg" alt="" loading="lazy" decoding="async"></div><div class="c"><img src="https://cdn.jsdelivr.net/gh/wwwzy502/wuzeyuan-portfolio@main/images/6-2.jpg" alt="" loading="lazy" decoding="async"></div><div class="c"><img src="https://cdn.jsdelivr.net/gh/wwwzy502/wuzeyuan-portfolio@main/images/6-3.jpg" alt="" loading="lazy" decoding="async"></div><div class="c"><img src="https://cdn.jsdelivr.net/gh/wwwzy502/wuzeyuan-portfolio@main/images/6-4.jpg" alt="" loading="lazy" decoding="async"></div></div></div></div></section>
+<section class="work" id="w7"><div class="wrap"><div class="duo reveal"><div class="txt"><div><span class="idx">07</span><span class="kick">Web Design</span></div><h3>网页制作 · 石家河文明</h3><div class="role">角色 · <b>策划 / 视觉设计 / 前端制作</b></div><div class="quote">让四千年前的<em>玉与陶</em>，在屏幕上重新被<em>触摸</em>。我想用网页，为一段被低估的文明做一次数字策展。</div><div class="body">一个以「石家河文明」为主题的文化专题网页。我从内容策划、视觉设计到前端制作独立完成，用考古质感的排版与图文交互，梳理这一长江中游史前文明的玉器、陶塑与聚落脉络。</div><div class="meta"><div><span>主题</span><b>石家河文明 · 文化专题</b></div><div><span>职责</span><b>策划 / 设计 / 前端</b></div><div><span>技术</span><b>HTML · CSS · 响应式</b></div><div><span>状态</span><b>已上线</b></div></div><a class="btn" href="https://wwwzy502.github.io/shijiahe-jade/" target="_blank" rel="noopener">访问网站 <span>→</span></a></div><div class="media g7"><div class="c"><img src="https://cdn.jsdelivr.net/gh/wwwzy502/wuzeyuan-portfolio@main/images/7-1.jpg" alt="" loading="lazy" decoding="async"></div><div class="c"><img src="https://cdn.jsdelivr.net/gh/wwwzy502/wuzeyuan-portfolio@main/images/7-2.jpg" alt="" loading="lazy" decoding="async"></div><div class="c"><img src="https://cdn.jsdelivr.net/gh/wwwzy502/wuzeyuan-portfolio@main/images/7-3.jpg" alt="" loading="lazy" decoding="async"></div><div class="c"><img src="https://cdn.jsdelivr.net/gh/wwwzy502/wuzeyuan-portfolio@main/images/7-4.jpg" alt="" loading="lazy" decoding="async"></div><div class="c"><img src="https://cdn.jsdelivr.net/gh/wwwzy502/wuzeyuan-portfolio@main/images/7-5.jpg" alt="" loading="lazy" decoding="async"></div></div></div></div></section>
+<section class="work" id="w8"><div class="wrap"><div class="duo rev reveal"><div class="txt"><div><span class="idx">08</span><span class="kick">Travel Vlog</span></div><h3>综艺感旅游 Vlog</h3><div class="role">角色 · <b>策划 / 拍摄 / 剪辑</b></div><div class="quote">旅行不该只是<em>好看</em>的风景，更该是好笑、好玩、有<em>梗</em>的经历。我想把一段旅程，剪成一档节目感十足的<em>综艺</em>。</div><div class="body">一支拍摄于哈尔滨冰雪大世界的综艺感旅游 Vlog，取景于十二月的冰天雪地。我负责策划、拍摄与剪辑，借鉴真人秀的叙事节奏，用花字、音效梗、快切把主人公在冰雪世界里的真实反应放大成笑点。</div><div class="meta"><div><span>形式</span><b>综艺感旅游 Vlog</b></div><div><span>地点</span><b>哈尔滨冰雪大世界 · 12月</b></div><div><span>看点</span><b>花字 · 音效梗 · 快剪</b></div><div><span>职责</span><b>策划 / 拍摄 / 剪辑</b></div></div><a class="btn" href="https://ucn5l0zz0g93.feishu.cn/wiki/PffXwsusHiOaJgkBgWLc32uknWg?from=from_copylink" target="_blank" rel="noopener">观看作品 <span>→</span></a></div><div class="media g8"><div class="c contain"><span class="tag">Vlog</span><img src="https://cdn.jsdelivr.net/gh/wwwzy502/wuzeyuan-portfolio@main/images/8-1.jpg" alt="" loading="lazy" decoding="async"></div><div class="c"><img src="https://cdn.jsdelivr.net/gh/wwwzy502/wuzeyuan-portfolio@main/images/8-2.jpg" alt="" loading="lazy" decoding="async"></div><div class="c"><img src="https://cdn.jsdelivr.net/gh/wwwzy502/wuzeyuan-portfolio@main/images/8-3.jpg" alt="" loading="lazy" decoding="async"></div><div class="c"><img src="https://cdn.jsdelivr.net/gh/wwwzy502/wuzeyuan-portfolio@main/images/8-4.jpg" alt="" loading="lazy" decoding="async"></div></div></div></div></section>
+
+<footer class="foot" id="contact"><div class="wrap">
+  <div class="reveal"><div class="foot-cta">Let&rsquo;s create<br>something <span class="red">real.</span></div></div>
+  <div class="foot-grid reveal"><div class="cell"><span>Name / 姓名</span><b>吴泽远</b></div><div class="cell"><span>Phone / 电话</span><b>18267251112</b></div><div class="cell"><span>Email / 邮箱</span><b><a href="mailto:2098281769@qq.com">2098281769@qq.com</a></b></div></div>
+  <div class="foot-bottom"><div>© 2026 Visual Works · 吴泽远 · 武汉传媒学院</div><a href="#" class="to-top">Back to Top ↑</a></div>
+</div></footer>
+<script>const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.1});document.querySelectorAll('.reveal').forEach(el=>io.observe(el));</script>
+</body></html>
